@@ -1,1 +1,3 @@
-A Data-mining project
+A Data-mining project using twitter.
+For the code to work you must put in 4 tokens provided by twitter if you have a developer account. Obviously I couldn't publish my own here.
+Anyway, as an exemple, I include in this folder a PNG of a plot made using the keyword 'soccer' on english-speaking twitters in 11.07.2019. It is interesting since the use of the word is relevently associated with the recent final of womens world cup won by USA. It's also good to mention that pratically only americans call the sport 'soccer'.
