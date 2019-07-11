@@ -1,0 +1,3 @@
+2 files using K-nearest neighbors technique:
+- Prediction on the purchasing (or not) of caravan insurancies based onf client data.
+- Prediction on Iris Species based on its features.
