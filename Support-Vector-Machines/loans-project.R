@@ -5,7 +5,8 @@ library(e1071)
 theme_set(theme_bw())
 
 #opening and analysing original dataset
-loans<-read.csv('C:/Users/Bode/Desktop/serious/Cursos/Data Science and Machine Learning Bootcamp with R/R-Course-HTML-Notes/R-for-Data-Science-and-Machine-Learning/Training Exercises/Machine Learning Projects/CSV files for ML Projects/loan_data.csv')
+url<-getURL('https://raw.githubusercontent.com/a-jakob/Portfolio/master/Support-Vector-Machines/loan_data.csv')
+loans<-read.csv(text=url)
 str(loans)
 summary(loans)
 View(loans)
