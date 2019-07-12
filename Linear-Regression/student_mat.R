@@ -7,7 +7,8 @@ library(corrplot)
 library(caTools)
 
 #load data set
-df<-read.csv('student-mat.csv',sep=';')
+url<-getURL('https://raw.githubusercontent.com/a-jakob/Portfolio/master/Linear-Regression/student-mat.csv')
+df<-read.csv(text=url,sep=';')
 #checking for NA
 any(is.na(df))
 #making sure characters are factors
