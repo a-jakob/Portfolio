@@ -1,2 +1,4 @@
-Project of analysing bike sharing predicting it based on multiple variables using Linear Regression.
+Projects using Linear Regression technique for predictions with 2 projects:
+- Project of analysing bike sharing data set predicting its demand based on multiple variables using Linear Regression.
+- Prediction of future perfornance of students based of their data.
 It also has the original data sets in .csv.
