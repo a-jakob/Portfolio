@@ -1,8 +1,10 @@
 #Loadiing libraries
 library(caTools)
 library(neuralnet)
+library(RCurl)
 #loading original Data Frame
-df<-read.csv('C:/Users/Bode/Desktop/serious/Cursos/Data Science and Machine Learning Bootcamp with R/R-Course-HTML-Notes/R-for-Data-Science-and-Machine-Learning/Training Exercises/Machine Learning Projects/CSV files for ML Projects/bank_note_data.csv')
+url<-getURL('https://raw.githubusercontent.com/a-jakob/Portfolio/master/Neural-Nets/bank_note_data.csv')
+df<-read.csv(text=url)
 
 #spliting train and test set
 sample<-sample.split(df$Class,SplitRatio = 0.7)
