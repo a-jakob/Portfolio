@@ -5,7 +5,7 @@ library(e1071)
 class(iris)
 model<-svm(Species~.,data=iris)
 summary(model)
-#the summary above show, among other things, cost and (should have present) gamma. Cost is the hardiness of the margin, we can knowing cost set some values to be out of the model. Gamma is a complex value to set non linear values to the spliting line. Bascially, large gamma leads to high bias and low variance models and vice viersa.
+#the summary above show, among other things, cost and (should have presented) gamma. Cost is the hardiness of the margin, we can knowing cost set some values to be out of the model. Gamma is a complex value to set non linear values to the spliting line. Bascially, large gamma leads to high bias and low variance models and vice viersa.
 
 #attention, the code below is only to show how I could predict a value. In this case, I should run it with a test set, never with the data itself (because the model was trained with the same data it is trying to predict). Nevertheless it is shown here for ilustrative purposes.
 pred.values<-predict(model,iris[1:4])
