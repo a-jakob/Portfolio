@@ -1,1 +1,3 @@
-Prediction on the Wine type based on its chemical features using K-mean clustering.
+2 projects using K-mean clustering:
+-Prediction on the Wine type based on its chemical features using K-mean clustering (original data set included).
+-Very simple use of k-means predicting Iris species
