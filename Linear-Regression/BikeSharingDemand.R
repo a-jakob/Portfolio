@@ -6,7 +6,8 @@ library(caTools)
 #setting the theme for all the plots
 theme_set(theme_bw())
 #load data
-df<-read.csv('~/git/learning/LinearRegressionProject/bikeshare.csv')
+url<-getURL('https://raw.githubusercontent.com/a-jakob/Portfolio/master/Linear-Regression/bikeshare.csv')
+df<-read.csv(text=url)
 head(df)
 View(df)
 #Exploratory data analysis: plot count vc temp
@@ -53,9 +54,9 @@ temp.test<-data.frame(temp=25)
 predict(temp.model,temp.test)
 #...or use a 1 degree equasion a*x+b to determine the value
 as.numeric(temp.model$coefficients[1]+temp.model$coefficients[2]*25)
+
 #now a prediction based in almost all variables
 model <- lm(count ~ . -casual - registered -datetime -atemp,df)
 corrgram(df)
-summary(model)
-plot(model)
+
 
