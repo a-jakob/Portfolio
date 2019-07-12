@@ -5,7 +5,9 @@ library(tidyverse)
 library(caTools)
 #exploratory analysis
 rm(list=ls())
-adult<-read.csv('adult_sal.csv')
+
+url<-getURL('https://raw.githubusercontent.com/a-jakob/Portfolio/master/Logic-Regression/adult_sal.csv')
+adult<-read.csv(text=url)
 adult<-select(adult,-X)
 View(adult)
 #looking at type_employer variable
