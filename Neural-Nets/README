@@ -1,1 +1,3 @@
-Neural Nets Project
+Neural Nets Projects
+- Boston houses is a data set of features of houses in Boston, we used Neural Nets to predict their value
+- Bank Notes is a data set of features of bank notes and we runned an algorithm to predict if they are authentic or not, with 100% of accuracy. The original dataset is included in the folder.
