@@ -6,4 +6,4 @@ Most of them are in R script format and organized by technique.
 
 I would appreciate if you took a look especially at Titanic-ML and MovieLens-Project, that not only have their scripts available but also a final report in PDF.
 
-Thank you in advance for the attention.
+Thank you in advance for your attention.
