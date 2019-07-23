@@ -1,5 +1,4 @@
 # Portfolio
-Some personal projects
 
 Hello, here I compile some projects that I made while I expand my Data Science knowledge.
 Most of them are in R script format and organized by technique.
