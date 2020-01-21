@@ -118,21 +118,20 @@ kable(error)
 ```
 
 ## Introduction
-This is the final Report in order to get the Data Science Professional Certificate provided by EdX and HarvardX. After studying the mutiple data science and machine learning proccesses, this final work proposal was to choose a data set by my own and to write a report. Following the reccomentadion, I have researched a couple of data sets on kaggle, and finally downloaded the Titanic data set - whose original file can be found in https://www.kaggle.com/mysticvalley/titanic-original#titanic3.xls. The challenge here is to predict who survived and who did not based on other data available from the Titanic passangers.
-Since this is evaluated by other students, I would like to ask the evaluators to be kind with my grammatical errors, because english is not my native language. So I thank you in advance, both for the patience and the evaluation itself. All files mentioned or used are available in the Github link created for these purpose: 
+This is the final Report in order to get the Data Science Professional Certificate provided by EdX and HarvardX. After studying the multiple data science and machine learning processes, this final work proposal was to choose a data set by my own and to write a report. Following the recommendation, I have researched a couple of data sets on kaggle, and finally downloaded the Titanic data set — whose original file can be found in https://www.kaggle.com/mysticvalley/titanic-original#titanic3.xls. The challenge here is to predict who survived and who did not based on other data available from the Titanic passengers.
 
 ##Method
 
 ### Cleaning the data set
 
-The first step of the analysis is to take a look on the data. It was downloaded as a xls file, which I put in a R vector. Some of the numeric observations was originally imputed as characters, but R has coerced those automatically to numeric.
+The first step of the analysis is to take a look on the data. It was downloaded as a xls file, which I put in a R vector. Some numeric observations was originally imputed as characters, but R has coerced those automatically to numeric.
 
 
 ```{r overview dimmension, echo=TRUE}
 dim(titanic)
 ```
 
-A first look on the data set shows us that we have 1309 observations, in other words passangers, and 14 variables: "pclass", "survived", "name",  "sex", "age", "sibsp", "parch", "ticket", "fare", "cabin", "embarked", "boat", "body" and "home.dest". Not all of these variables seem usefull to base the prediction, so I selected only 8 who seem meaningfull. The variables elected as non important are: name, cabin, boat, body and destination. I discarded name and destination because sounds obvious to me that these variables could not interfere in the survival rate of the passager. Cabin and boat could have been usefull, but unfortunately there are too many NA's in their columns - even more than actual data (see below), so it would be too risky infere their values. And the classification of body is already a sign that the person did not survive (even though there are many NA's between the non survivals). There is some subjectiveness in my choices, but I do not see them as very controversial and believe my explanation above is enough.
+A first look on the data set shows us that we have 1309 observations, in other words passangers, and 14 variables: "pclass", "survived", "name",  "sex", "age", "sibsp", "parch", "ticket", "fare", "cabin", "embarked", "boat", "body" and "home.dest". Not all of these variables seem useful to base the prediction, so I selected only 8 who seem meaningful. The variables elected as non important are: name, cabin, boat, body and destination. I discarded name and destination because sounds obvious to me that these variables could not interfere in the survival rate of the passenger. Cabin and boat could have been useful, but unfortunately there are too many NA's in their columns - even more than actual data (see below), so it would be too risky infere their values. And the classification of body is already a sign that the person did not survive (even though there are many NA's between the non survivals). There is some subjectiveness in my choices, but I do not see them as very controversial and believe my explanation above is enough.
 
 ```{r table NAs per variable, echo=TRUE}
 kable(nas0)
@@ -143,7 +142,7 @@ kable(nas0)
 So at the end we have a data set with 8 variables, which I briefly explain:
 
 #### Pclass 
-Referes to the class of the passagers, it has 3 possible values (1, 2 or 3).
+Referes to the class of the passengers, it has 3 possible values (1, 2 or 3).
 
 ```{r histogram pclass}
 histogram(titanic$pclass)
@@ -164,24 +163,24 @@ kable(sex)
 ```
 
 #### Age 
-Is a continuous distribution of the age in years from each passager. As showed above, there are 263 NAs on the data set, so I will not plot this distribution nor analyse it further at this moment. 
+Is a continuous distribution of the age in years from each passenger. As showed above, there are 263 NAs on the data set, so I will not plot this distribution nor analyze it further at this moment. 
 
 #### Sibsp and Parch
-I considered both as one since they are similar. The first one is the number of brothers, sisters or spouses while the second one is the number of parents and children each passanger has on board. At this point I created a new variable "family" to compute the size of the families on board, which is the sum of "parch" and "sibsp" plus 1 (the passager himself). 
+I considered both as one since they are similar. The first one is the number of brothers, sisters or spouses while the second one is the number of parents and children each passenger has on board. At this point I created a new variable "family" to compute the size of the families on board, which is the sum of "parch" and "sibsp" plus 1 (the passenger himself). 
 
 ```{r family}
 histogram(titanic$family)
 ```
 
 #### Fare
-Is the price each passager paid for the ticket (probably in english pounds). It varies depending on many factors, most of them accordingly to the class of the ticket and the port that the passanger embarked because, among other issues, of the distance to be traveled. So I used the median of the fares of the other passengers with the same class and port to correct this NA. Then I reached the distribution of fares.
+Is the price each passenger paid for the ticket (probably in English pounds). It varies depending on many factors, most of them accordingly to the class of the ticket and the port that the passenger embarked because, among other issues, of the distance to be traveled. So I used the median of the fares of the other passengers with the same class and port to correct this NA. Then I reached the distribution of fares.
 
 ```{r fares and NA}
 histogram(titanic$fare)
 ```
 
 #### Embarked
-Is the port used by the passanger to embark on Titanic. Ic has 3 options (S for South Hambton, C for Cherbourg and Q for Queenstown). Filtering the data by similar observations on fare, class and family, I founded that Other passagers with the same characteristics have embarked in Queenstown port. So I have corrected the 2 NAs with "C" in the column embarked.
+Is the port used by the passenger to embark on Titanic. It has 3 options (S for South Hampton, C for Cherbourg and Q for Queenstown). Filtering the data by similar observations on fare, class and family, I founded that Other passengers with the same characteristics have embarked in Queenstown port. So I have corrected the 2 NAs with "C" in the column embarked.
 
 ```{r filtering similar embarked}
 embarked<-titanic%>%filter(fare>=79&fare<=80&pclass=="1"&family=="1")
@@ -189,7 +188,7 @@ kable(embarked)
 ```
 
 #### Summary of Variables
-After filling this NAs, the distribution of the passagers by port is the table below.
+After filling this NAs, the distribution of the passengers by port is the table below.
 
 ```{r embarked and NAs}
 kable(ports)
@@ -197,7 +196,7 @@ kable(ports)
 
 ### First minor Machine Learning
 
-As it is showed above, most of the variables have been cleaned and are ready for the prediction. There is though the column Age with several NAs in it (exactly 263). Unfortunately this seems to be an important criteria for survival and I can not give up on this. Since age usually follows a normal distribution, I could have been corrected the NA values with a median of the non NAs values. Nevertheless, I choosed to run a first minor Machine Learning experiment to fill the NAs. Using the Regression Trees technique I created a fit modell function to predict age from all other variables from the non-NAs (except survived, which is the final goal). Then I used predict function to fill the NAs, which gave me a age distribution that I show below.
+As it is showed above, most of the variables have been cleaned and are ready for the prediction. There is though the column Age with several NAs in it (exactly 263). Unfortunately this seems to be an important criterion for survival and I can not give up on this. Since age usually follows a normal distribution, I could have been corrected the NA values with a median of the non NAs values. Nevertheless, I chose to run a first minor Machine Learning experiment to fill the NAs. Using the Regression Trees technique I created a fit model function to predict age from all other variables from the non-NAs (except survived, which is the final goal). Then I used predict function to fill the NAs, which gave me a age distribution that I show below.
 
 ```{r Age and NAs}
 histogram(titanic$age)
@@ -205,7 +204,7 @@ histogram(titanic$age)
 
 ### Splitting train and test set
 
-Now that the data set is clean, I divided it into a training and a test set. It was common during the course to stablish a proportion of 0.1 between training and test set. But here the entire data set is not so large (1309 rows), so I choosed a higher proportion of 0.3. After separating both sets, I removed the "survived" color from the test set, in order to predict this information based on the training set.
+Now that the data set is clean, I divided it into a training and a test set. It was common during the course to establish a proportion of 0.1 between training and test set. But here the entire data set is not so large (1309 rows), so I chose a higher proportion of 0.3. After separating both sets, I removed the "survived" color from the test set, in order to predict this information based on the training set.
 
 ```{r dim train and test set}
 kable(traintest[1,])
@@ -214,7 +213,7 @@ kable(traintest[1,])
 
 ### Regression Tree
 
-Again I used the Regression Trees technique I created a fit modell function to predict if the passanger has or has not survived from all other variables. Below I plotted the tree to show an example on whow are the questions used by R for prediction.
+Again I used the Regression Trees technique I created a fit model function to predict if the passenger has or has not survived from all other variables. Below I plotted the tree to show an example on who are the questions used by R for prediction.
 
 ```{r regression tree}
 #I again made a fit modell using all variables available, this time to predict the data survived.   
@@ -223,7 +222,7 @@ fit_survived<-rpart(survived~pclass+sex+sibsp+age+parch+fare+embarked+family,dat
 prp(fit_survived)
 ```
 
-If the modell is plotted,it is possible to see how have R decided for the amount of braces of the regression tree. It has reached a total amont of 8 braces, but from 4 braces on the relative error has not decreased consederably.
+If the model is plotted,it is possible to see how have R decided for the amount of braces of the regression tree. It has reached a total amount of 8 braces, but from 4 braces on the relative error has not decreased considerably.
 
 ``` {r braces of regression tree}
 plotcp(fit_survived)
@@ -248,5 +247,5 @@ kable(error)
 
 ## Conclusion
 
-At first view, the combined minimum error of 0.19 may not appear much impressive. I sustain otherwise, since one must keep in mind the characteristics of the data set. The provided information is general observations such Sex, Age, family on board, fare paid, class and port, which means a considerably little amount of data about the passagers of Titanic, which in its turn is also a relativ little data set. Even though the Random Forest technique made possible to predict their destiny with satisfatory accuracy. A combined minimum error of 0.19 is relatively good prediction, and the prediction for non survivors can be classified as excelent: just 0.10. 
+At first view, the combined minimum error of 0.19 may not appear much impressive. I sustain otherwise, since one must keep in mind the characteristics of the data set. The provided information is general observations such Sex, Age, family on board, fare paid, class and port, which means a considerably little amount of data about the passengers of Titanic, which in its turn is also a relative little data set. Even though the Random Forest technique made possible to predict their destiny with satisfactory accuracy. A combined minimum error of 0.19 is relatively good prediction, and the prediction for non survivors can be classified as excellent: just 0.10. 
 
